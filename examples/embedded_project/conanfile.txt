@@ -1,0 +1,9 @@
+[requires]
+boost/1.82.0
+zlib/1.2.13
+openssl/3.0.0
+fmt/10.0.0
+
+[generators]
+cmake
+

@@ -1,0 +1,274 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                         SBOM SCANNER - GET STARTED                           ║
+║                                                                              ║
+║             Multi-Language SBOM Tool with CycloneDX Output                   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📦 WHAT IS THIS?
+================================================================================
+
+SBOM Scanner is a comprehensive tool that scans your projects for dependencies
+across multiple programming languages and generates a Software Bill of Materials
+(SBOM) in industry-standard CycloneDX format.
+
+✨ KEY FEATURES:
+  • Supports 9+ programming languages (JavaScript, Python, Java, Go, etc.)
+  • Generates CycloneDX format SBOM (JSON/XML)
+  • Minimizes false positives through confidence scoring
+  • Easy-to-use command-line interface
+  • Cross-platform (Windows, Linux, Mac)
+
+🚀 QUICK START
+================================================================================
+
+STEP 1: INSTALL DEPENDENCIES
+-----------------------------
+
+Windows:
+  .\install.ps1
+
+Linux/Mac:
+  chmod +x install.sh
+  ./install.sh
+
+Manual:
+  pip install -r requirements.txt
+  pip install -e .
+
+
+STEP 2: VERIFY INSTALLATION
+-----------------------------
+
+  sbom-scan --version
+
+You should see: "SBOM Scanner v1.0.0"
+
+
+STEP 3: RUN YOUR FIRST SCAN
+-----------------------------
+
+Test with example project:
+  sbom-scan examples/multi_language_project
+
+Scan your own project:
+  cd /path/to/your/project
+  sbom-scan
+
+Output: sbom.json (in current directory)
+
+
+STEP 4: VIEW THE RESULTS
+-----------------------------
+
+  # View the SBOM
+  cat sbom.json
+
+  # Pretty print (requires Python or jq)
+  python -m json.tool sbom.json
+  # or
+  jq . sbom.json
+
+
+📚 DOCUMENTATION
+================================================================================
+
+  README.md           Full documentation with all features
+  QUICKSTART.md       5-minute getting started guide
+  USAGE.md            Detailed usage examples and integrations
+  ARCHITECTURE.md     System design and architecture
+  CONTRIBUTING.md     How to contribute and add new detectors
+  PROJECT_SUMMARY.md  Complete project overview
+
+
+🎯 COMMON USE CASES
+================================================================================
+
+1. SECURITY SCANNING
+   Generate SBOM for vulnerability scanning:
+   
+   sbom-scan -o sbom.json
+   # Feed sbom.json to your security tool (Grype, Snyk, etc.)
+
+2. COMPLIANCE
+   Generate SBOM for regulatory compliance:
+   
+   sbom-scan -n "MyProduct" -v "1.0.0" -f xml -o sbom.xml
+
+3. CI/CD INTEGRATION
+   Add to your build pipeline:
+   
+   sbom-scan -o build/sbom.json
+
+4. POLYGLOT PROJECTS
+   Scan projects with multiple languages automatically:
+   
+   sbom-scan .
+
+
+🔧 CUSTOMIZATION
+================================================================================
+
+Reduce False Positives (strict mode):
+  sbom-scan --min-confidence 0.9
+
+Include More Dependencies (permissive mode):
+  sbom-scan --min-confidence 0.7
+
+Specify Output Format:
+  sbom-scan -f json -o output.json
+  sbom-scan -f xml -o output.xml
+
+Add Project Metadata:
+  sbom-scan -n "ProjectName" -v "2.1.0"
+
+
+🌍 SUPPORTED LANGUAGES
+================================================================================
+
+  ✓ JavaScript/TypeScript    (npm, yarn, pnpm)
+  ✓ Python                   (pip, poetry, pipenv)
+  ✓ Java                     (Maven, Gradle)
+  ✓ PHP                      (Composer)
+  ✓ .NET/C#                  (NuGet)
+  ✓ Ruby                     (Gem/Bundler)
+  ✓ Rust                     (Cargo)
+  ✓ Go                       (Go modules)
+
+
+📋 EXAMPLE OUTPUT
+================================================================================
+
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "my-project",
+      "version": "1.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "express",
+      "version": "4.18.2",
+      "purl": "pkg:npm/express@4.18.2"
+    },
+    {
+      "type": "library",
+      "name": "requests",
+      "version": "2.31.0",
+      "purl": "pkg:pypi/requests@2.31.0"
+    }
+  ]
+}
+
+
+🔍 TROUBLESHOOTING
+================================================================================
+
+Problem: "Command not found: sbom-scan"
+Solution: Run with: python -m sbom_scanner.cli
+
+Problem: No dependencies found
+Solution: 
+  - Check if manifest files exist (package.json, requirements.txt, etc.)
+  - Try verbose mode: sbom-scan --verbose
+  - Lower confidence: sbom-scan --min-confidence 0.7
+
+Problem: Too many false positives
+Solution:
+  - Increase confidence: sbom-scan --min-confidence 0.9
+  - Check if scanning from correct directory
+
+Problem: Python not found
+Solution:
+  - Install Python 3.8 or higher from python.org
+  - Ensure Python is in your PATH
+
+
+🤝 GETTING HELP
+================================================================================
+
+  GitHub Issues:    https://github.com/yourusername/sbom-scanner/issues
+  Documentation:    See README.md and other .md files
+  Email:            support@example.com
+
+
+💡 TIPS & TRICKS
+================================================================================
+
+1. Commit SBOMs to version control to track dependency changes
+2. Generate SBOMs on every release for security auditing
+3. Use strict mode (0.9+) for production deployments
+4. Integrate with security tools like Dependency-Track
+5. Run regularly to catch new vulnerabilities
+
+
+🎓 LEARNING MORE
+================================================================================
+
+  CycloneDX:       https://cyclonedx.org/
+  SBOM Overview:   https://www.ntia.gov/sbom
+  Security Tools:  https://dependencytrack.org/
+
+
+📦 PROJECT FILES
+================================================================================
+
+Core Application:
+  sbom_scanner/
+    ├── __init__.py              Package initialization
+    ├── models.py                Data models
+    ├── scanner.py               Core scanner
+    ├── cyclonedx_generator.py   BOM generation
+    ├── cli.py                   Command-line interface
+    └── detectors/               Language detectors
+        ├── npm_detector.py
+        ├── python_detector.py
+        ├── maven_detector.py
+        └── ... (9 detectors total)
+
+Documentation:
+  README.md, QUICKSTART.md, USAGE.md, ARCHITECTURE.md, CONTRIBUTING.md,
+  PROJECT_SUMMARY.md, CHANGELOG.md
+
+Configuration:
+  requirements.txt, setup.py, config.example.yaml
+
+Installation:
+  install.sh (Linux/Mac), install.ps1 (Windows)
+
+Testing:
+  test_scanner.py, examples/
+
+License:
+  LICENSE (MIT)
+
+
+🎉 NEXT STEPS
+================================================================================
+
+1. Read QUICKSTART.md for a 5-minute guide
+2. Try scanning the example project
+3. Scan your own projects
+4. Integrate into your CI/CD pipeline
+5. Contribute new detectors (see CONTRIBUTING.md)
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                   THANK YOU FOR USING SBOM SCANNER!                          ║
+║                                                                              ║
+║                      Happy scanning! 🚀                                      ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+For full documentation, open README.md
+For quick start, open QUICKSTART.md
+For detailed usage, open USAGE.md
+

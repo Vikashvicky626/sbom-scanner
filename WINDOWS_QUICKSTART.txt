@@ -1,0 +1,176 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                  SBOM SCANNER - WINDOWS QUICK START GUIDE                    ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+This guide will get you up and running with SBOM Scanner on Windows in minutes!
+
+═══════════════════════════════════════════════════════════════════════════════
+  STEP 1: INSTALL PYTHON
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Download Python 3.8 or higher from:
+   https://www.python.org/downloads/
+
+2. During installation, CHECK THE BOX: "Add Python to PATH"
+
+3. Verify installation by opening PowerShell and running:
+   python --version
+
+═══════════════════════════════════════════════════════════════════════════════
+  STEP 2: INSTALL SBOM SCANNER
+═══════════════════════════════════════════════════════════════════════════════
+
+Open PowerShell and navigate to the project directory:
+
+   cd D:\Projects\SBOM
+
+Then run ONE of the following methods:
+
+METHOD A - Using PowerShell Script (Recommended):
+   .\install.ps1
+
+METHOD B - Manual Installation:
+   python -m pip install -r requirements.txt
+   python -m pip install -e .
+
+If you get an error about execution policy, run this first:
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+═══════════════════════════════════════════════════════════════════════════════
+  STEP 3: RUN YOUR FIRST SCAN
+═══════════════════════════════════════════════════════════════════════════════
+
+Choose ONE of the following methods to run a scan:
+
+METHOD A - Using PowerShell Quick Run Script (Easiest):
+   .\run_sbom_scan.ps1
+
+METHOD B - Using Batch File:
+   run_sbom_scan.bat
+
+METHOD C - Using the sbom-scan Command:
+   sbom-scan
+
+METHOD D - Using Python Module (if command not found):
+   python -m sbom_scanner.cli .
+
+═══════════════════════════════════════════════════════════════════════════════
+  COMMON COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+Scan current directory:
+   .\run_sbom_scan.ps1
+
+Scan a specific directory:
+   .\run_sbom_scan.ps1 C:\Projects\MyApp
+
+Generate XML format:
+   .\run_sbom_scan.ps1 -Format xml -Output sbom.xml
+
+Scan with project metadata:
+   .\run_sbom_scan.ps1 -ProjectName "MyApp" -ProjectVersion "1.0.0"
+
+Show help:
+   .\run_sbom_scan.ps1 -Help
+
+Run tests:
+   .\test_scanner.ps1
+
+═══════════════════════════════════════════════════════════════════════════════
+  OUTPUT
+═══════════════════════════════════════════════════════════════════════════════
+
+By default, the scanner creates "sbom.json" in the current directory.
+
+This file contains:
+  ✓ All detected dependencies
+  ✓ Version information
+  ✓ Ecosystem/package manager info
+  ✓ CycloneDX format (industry standard)
+
+═══════════════════════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Problem: "Cannot run scripts on this system"
+Solution: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Problem: "Python not found"
+Solution: Install Python and make sure "Add Python to PATH" is checked
+
+Problem: "'sbom-scan' is not recognized"
+Solution: Use: python -m sbom_scanner.cli .
+
+Problem: "Module not found" errors
+Solution: python -m pip install -r requirements.txt
+
+═══════════════════════════════════════════════════════════════════════════════
+  NEXT STEPS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Run a test scan:
+   .\run_sbom_scan.ps1
+
+2. View the generated sbom.json file
+
+3. Read full documentation:
+   - README.md         - Complete documentation
+   - WINDOWS_SETUP.md  - Detailed Windows guide
+   - USAGE.md          - Usage examples
+   - QUICKSTART.md     - 5-minute quick start
+
+4. Scan your own projects:
+   .\run_sbom_scan.ps1 C:\Path\To\Your\Project
+
+═══════════════════════════════════════════════════════════════════════════════
+  SUPPORTED LANGUAGES
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ JavaScript/TypeScript (npm, yarn, pnpm)
+✓ Python (pip, poetry, pipenv)
+✓ Java (Maven, Gradle)
+✓ .NET (NuGet)
+✓ PHP (Composer)
+✓ Ruby (Gem)
+✓ Rust (Cargo)
+✓ Go (go modules)
+✓ C/C++ (Conan, vcpkg, CMake)
+✓ Embedded/IoT (PlatformIO, Arduino, Mbed)
+
+═══════════════════════════════════════════════════════════════════════════════
+  SCRIPTS AVAILABLE
+═══════════════════════════════════════════════════════════════════════════════
+
+PowerShell Scripts (.ps1):
+  ✓ install.ps1              - Install SBOM Scanner
+  ✓ run_sbom_scan.ps1        - Quick run with parameters
+  ✓ test_scanner.ps1         - Run test suite
+  ✓ examples\example_usage.ps1 - Example usage
+
+Batch Files (.bat):
+  ✓ run_sbom_scan.bat        - Quick run (batch alternative)
+  ✓ test_scanner.bat         - Run tests (batch alternative)
+
+═══════════════════════════════════════════════════════════════════════════════
+  NEED HELP?
+═══════════════════════════════════════════════════════════════════════════════
+
+Documentation:
+  - WINDOWS_SETUP.md  - Full Windows setup guide
+  - README.md         - Main documentation
+  - USAGE.md          - Detailed usage examples
+
+Example:
+  - examples\example_usage.ps1 - See how to use programmatically
+
+Support:
+  - Check the GitHub repository for issues and updates
+  - Review the documentation files
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Happy scanning! 🎉
+
+

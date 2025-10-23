@@ -1,0 +1,55 @@
+# SBOM Scanner Configuration Example
+# This file shows available configuration options
+
+# Minimum confidence threshold for dependencies (0.0 - 1.0)
+# Higher values reduce false positives but may miss some dependencies
+min_confidence: 0.8
+
+# Output settings
+output:
+  # Output file path
+  path: "sbom.json"
+  
+  # Output format: json or xml
+  format: "json"
+
+# Project metadata
+project:
+  # Project name (optional, defaults to directory name)
+  name: "MyProject"
+  
+  # Project version (optional, defaults to 1.0.0)
+  version: "1.0.0"
+
+# Scanner settings
+scanner:
+  # Directories to skip during scanning (in addition to defaults)
+  skip_directories:
+    - "test_data"
+    - "examples"
+    - "docs"
+  
+  # Enable verbose output
+  verbose: false
+
+# Language-specific settings (future enhancement)
+detectors:
+  npm:
+    enabled: true
+  python:
+    enabled: true
+  maven:
+    enabled: true
+  gradle:
+    enabled: true
+  composer:
+    enabled: true
+  nuget:
+    enabled: true
+  ruby:
+    enabled: true
+  rust:
+    enabled: true
+  go:
+    enabled: true
+
