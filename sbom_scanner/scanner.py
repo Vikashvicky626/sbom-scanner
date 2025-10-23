@@ -94,7 +94,7 @@ class Scanner:
             
             try:
                 if detector.detect(scan_path):
-                    print(f"  ✓ Detected {detector_name}")
+                    print(f"  [+] Detected {detector_name}")
                     dependencies = detector.parse(scan_path)
                     
                     # Filter by confidence threshold
@@ -112,7 +112,7 @@ class Scanner:
             
             except Exception as e:
                 error_msg = f"Error in {detector_name}: {str(e)}"
-                print(f"  ✗ {error_msg}")
+                print(f"  [X] {error_msg}")
                 result.add_error(error_msg)
         
         # Remove duplicates and apply additional false positive reduction

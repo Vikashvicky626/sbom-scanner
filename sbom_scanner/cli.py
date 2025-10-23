@@ -95,7 +95,7 @@ def main(path, output, format, project_name, project_version, min_confidence, ve
     
     # Validate min_confidence
     if not 0.0 <= min_confidence <= 1.0:
-        click.echo(f"{Fore.RED}✗ Error: min-confidence must be between 0.0 and 1.0{Style.RESET_ALL}")
+        click.echo(f"{Fore.RED}[X] Error: min-confidence must be between 0.0 and 1.0{Style.RESET_ALL}")
         sys.exit(1)
     
     try:
@@ -112,7 +112,7 @@ def main(path, output, format, project_name, project_version, min_confidence, ve
         
         # Check for errors
         if scan_result.errors:
-            click.echo(f"\n{Fore.YELLOW}⚠ Warnings during scan:{Style.RESET_ALL}")
+            click.echo(f"\n{Fore.YELLOW}[!] Warnings during scan:{Style.RESET_ALL}")
             for error in scan_result.errors:
                 click.echo(f"  {error}")
         
